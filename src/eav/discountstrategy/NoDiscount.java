@@ -9,23 +9,12 @@ package eav.discountstrategy;
  *
  * @author Emilio
  */
-public class QtyDiscount implements DiscountStrategy{
+public class NoDiscount implements DiscountStrategy{
     private double discountRate;
-    private int minQty;
     private final int NO_DISCOUNT = 0;
 
-    public final int getMinQty() {
-        return minQty;
-    }
-
-    public final void setMinQty(int minQty) {
-        //needs validation
-        this.minQty = minQty;
-    }
-
-    public QtyDiscount(double discountRate, int minQty) {
-        setMinQty(minQty);
-        setDiscountRate(discountRate);
+    public NoDiscount() {
+      
     }
 
     public final double getDiscountRate() {
@@ -40,11 +29,8 @@ public class QtyDiscount implements DiscountStrategy{
     @Override
     public final  double getDiscoutAmt(int qty, double unitCost) {
         //needs validation
-        if(qty>= minQty){
-            return unitCost * qty * discountRate;
-        } else {
-            return NO_DISCOUNT;
-        }
+        return NO_DISCOUNT;
+        
         
     }
     
