@@ -9,8 +9,6 @@ package eav.discountstrategy;
  *
  * @author Emilio
  */
-public class Product {
-    private String prodId;
-    private String prodName;
-    private double unitCost;
+public interface DiscountStrategy {
+    public abstract double getDiscoutAmt(int qty, double unitCost);
 }

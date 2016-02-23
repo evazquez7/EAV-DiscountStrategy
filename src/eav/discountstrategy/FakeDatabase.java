@@ -10,7 +10,11 @@ package eav.discountstrategy;
  * @author Emilio
  */
 public class FakeDatabase {
-     private Customer[] customers = new Customer[3];
+     private Customer[] customers = {
+        new Customer("100", "Bob James"),
+        new Customer("200", "Sally Smith"),
+        new Customer("300", "Peter Piper")
+     };
     private Product[] products = new Product[3];
     
 }
