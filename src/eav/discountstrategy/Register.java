@@ -12,6 +12,7 @@ package eav.discountstrategy;
 public class Register {
    private Receipt receipt;
    private String storeName;
+   
     public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db);
     }
@@ -20,8 +21,8 @@ public class Register {
         
     }
     
-    public final void addItemToSale(String prodId, int qty){
-        
+    public final void addItemToSale(String prodId, int qty, DatabaseStrategy db){
+        receipt = new Receipt(prodId, qty, db);
     }
 
     public Receipt getReceipt() {
