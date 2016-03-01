@@ -5,11 +5,16 @@
  */
 package eav.discountstrategy;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Emilio
  */
-public interface Output {
-  
-    public abstract void output(Register register);
+public class GuiOutput implements Output{
+   
+    @Override
+    public void output(Register register) {
+       JOptionPane.showMessageDialog(null, register);
+	}
 }

@@ -9,7 +9,11 @@ package eav.discountstrategy;
  *
  * @author Emilio
  */
-public interface Output {
-  
-    public abstract void output(Register register);
+public class ConsoleOutput implements Output{
+
+    @Override
+    public void output(Register register) {
+        System.out.println(register);
+    }
+    
 }

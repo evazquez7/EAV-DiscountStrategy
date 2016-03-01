@@ -18,6 +18,8 @@ public class EAVDiscountStrategy {
         //KLUDGE: do configuration here 
         LineItem li = new LineItem();
         DatabaseStrategy db = new FakeDatabase();
+        Output output = new GuiOutput();
+        Output print = new ConsoleOutput();
         //Start talking to objects
         
         Register register = new Register();
@@ -33,8 +35,7 @@ public class EAVDiscountStrategy {
             System.out.println(item.getProduct().getProdName());
         }
        
-        System.out.println(register.getReceipt().getLineItems());
-        register.endSale();
+      
         
     }
     

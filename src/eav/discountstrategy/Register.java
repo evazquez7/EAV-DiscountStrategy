@@ -13,6 +13,9 @@ public class Register {
    private Receipt receipt;
    private String storeName;
    
+    public Register(){
+        endSale();
+    }
     public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db);
     }
