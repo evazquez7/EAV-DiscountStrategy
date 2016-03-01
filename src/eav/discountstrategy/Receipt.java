@@ -12,19 +12,35 @@ package eav.discountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
-    private LineItem li;
+    
     private Product product;
-
+    private LineItem[] lineItems;
+    
     public Receipt(String custId, DatabaseStrategy db) {
         setDb(db);
-        setCustomer(db.findCustomerById(custId));  
+        setCustomer(db.findCustomerById(custId));
+        lineItems = new LineItem[0];
     }
 
-    public Receipt(String prodId, int qty, DatabaseStrategy db) {
-        setDb(db);
-        setProduct(db.findProductById(prodId));
+    public final  void addItemToReceipt(String prodId, int qty){
+        LineItem item = new LineItem(prodId,qty, db);
+        addItemToArray(lineItems, item);
+       
     }
-
+    private void addItemToArray(LineItem[] origArray, LineItem item){
+        LineItem[] tempArray = new LineItem[origArray.length + 1];
+        System.arraycopy(origArray, 0, tempArray, 0, origArray.length);
+        tempArray[tempArray.length - 1] = item;
+        origArray = tempArray;
+        lineItems = origArray;
+        
+        
+//        for (int i = 0;  i < lineItems.length; i++){
+//            tempArray[i] = lineItems[i];
+//        }
+//        tempArray[tempArray.length - 1] = item;
+//        lineItems = tempArray;
+    }
     public Product getProduct() {
         return product;
     }
@@ -33,15 +49,15 @@ public class Receipt {
         //need validation
         this.product = product;
     }
-   
-    public LineItem getLi() {
-        return li;
+
+    public LineItem[] getLineItems() {
+        return lineItems;
     }
 
-    public final void setLi(LineItem li) {
-        //needs validation
-        this.li = li;
+    public void setLineItems(LineItem[] lineItems) {
+        this.lineItems = lineItems;
     }
+   
     
 
     public final Customer getCustomer() {

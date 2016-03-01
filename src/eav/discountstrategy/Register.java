@@ -18,11 +18,12 @@ public class Register {
     }
     
     public final void endSale(){
-        
+        receipt.getCustomer();
+        receipt.getLineItems();
     }
     
-    public final void addItemToSale(String prodId, int qty, DatabaseStrategy db){
-        receipt = new Receipt(prodId, qty, db);
+    public final void addItemToSale(String prodId, int qty){
+        receipt.addItemToReceipt(prodId, qty);
     }
 
     public Receipt getReceipt() {

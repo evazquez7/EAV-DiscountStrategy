@@ -16,12 +16,26 @@ public class EAVDiscountStrategy {
      */
     public static void main(String[] args) {
         //KLUDGE: do configuration here 
-        
+        LineItem li = new LineItem();
         DatabaseStrategy db = new FakeDatabase();
         //Start talking to objects
         
         Register register = new Register();
         register.startNewSale("100", db);
+        
+        Customer customer = register.getReceipt().getCustomer();
+        System.out.println("Customer " + customer.getCustName() + " found and added receipt");
+        
+        register.addItemToSale("11", 2);
+        
+        LineItem[] items = register.getReceipt().getLineItems();
+        for(LineItem item: items) {
+            System.out.println(item.getProduct().getProdName());
+        }
+       
+        System.out.println(register.getReceipt().getLineItems());
+        register.endSale();
+        
     }
     
 }

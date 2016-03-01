@@ -10,18 +10,53 @@ package eav.discountstrategy;
  * @author Emilio
  */
 public class LineItem {
+    private Product product;
+    private int qty;
     
-    Product product;
+    public LineItem(String prodId, int qty, DatabaseStrategy db) {
+        this.qty = qty;
+        setProduct(db.findProductById(prodId));
+       
+    }
 
-   
-    public Product getProduct() {
+    LineItem() {
+        
+    }
+    public String getLineItemData(int qty){
+        String data = "Product Name      Quantity      Cost   Discount \n"
+                + "---------------------------------------------------------\n"
+                + "/n"
+                + this.getProduct().getProdName()+ qty + getSubTotal() + getDiscount();   
+        return data;
+       }
+    public final double getSubTotal(){ 
+        return this.product.getUnitCost() * qty;
+        
+    }
+    
+    public final double getDiscount(){
+        return this.getProduct().getDiscount().getDiscoutAmt(qty, product.getUnitCost());
+    }
+    public final Product getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public final void setProduct(Product product) {
+        //needs validation
         this.product = product;
     }
+
+    public final int getQty() {
+        return qty;
+    }
+
+    public final void setQty(int qty) {
+        //needs validation
+        this.qty = qty;
+    }
     
+    
+   
     
     
     
