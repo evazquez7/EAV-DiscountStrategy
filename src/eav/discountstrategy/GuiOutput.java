@@ -11,10 +11,10 @@ import javax.swing.JOptionPane;
  *
  * @author Emilio
  */
-public class GuiOutput implements Output{
+public class GuiOutput implements OutputStrategy{
    
     @Override
-    public void output(Register register) {
-       JOptionPane.showMessageDialog(null, register);
+    public void output(String data) {
+       JOptionPane.showMessageDialog(null, data);
 	}
 }

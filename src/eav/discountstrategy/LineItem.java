@@ -19,21 +19,23 @@ public class LineItem {
        
     }
 
-    LineItem() {
-        
-    }
-    public String getLineItemData(int qty){
-        String data = "Product Name      Quantity      Cost   Discount \n"
-                + "---------------------------------------------------------\n"
-                + "/n"
-                + this.getProduct().getProdName()+ qty + getSubTotal() + getDiscount();   
+    
+    public String getLineItemData(){
+        String data = "Product Name       Original cost      Quantity     Cost     Discount \n"
+                + "----------------   ------------       -----------  -------  ----------\n"
+                + this.getProduct().getProdName()+"       "+ this.product.getUnitCost() +"              " +  getQty() +"            " 
+                +  getSubTotal()+"     " + getDiscount() 
+                +"\n\n"+   
+                "          Subtotal: " ;
         return data;
        }
     public final double getSubTotal(){ 
         return this.product.getUnitCost() * qty;
         
     }
-    
+    public final double getGrandTotal() {
+        return getSubTotal()- getDiscount();
+    }
     public final double getDiscount(){
         return this.getProduct().getDiscount().getDiscoutAmt(qty, product.getUnitCost());
     }

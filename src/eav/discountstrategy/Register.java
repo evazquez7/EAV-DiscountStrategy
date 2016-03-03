@@ -12,17 +12,24 @@ package eav.discountstrategy;
 public class Register {
    private Receipt receipt;
    private String storeName;
-   
-    public Register(){
-        endSale();
+   private OutputStrategy[] outputs;
+
+    Register(String kohls_Department_Store) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+   
+   
+    
     public final void startNewSale(String custId, DatabaseStrategy db){
         receipt = new Receipt(custId, db);
     }
     
-    public final void endSale(){
-        receipt.getCustomer();
-        receipt.getLineItems();
+    public final void endSale(String custId){
+         String data = receipt.getFinalReceipt(custId);
+        for(OutputStrategy out : outputs) {
+            out.output(data);
+        }
+        
     }
     
     public final void addItemToSale(String prodId, int qty){

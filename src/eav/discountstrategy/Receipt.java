@@ -12,9 +12,13 @@ package eav.discountstrategy;
 public class Receipt {
     private DatabaseStrategy db;
     private Customer customer;
+    double totalBeforeDiscount = 0;
+        double totalAfterDiscount = 0;
+        double totalDiscount = 0;
     
     private Product product;
     private LineItem[] lineItems;
+    private LineItem li;
     
     public Receipt(String custId, DatabaseStrategy db) {
         setDb(db);
@@ -41,6 +45,26 @@ public class Receipt {
 //        tempArray[tempArray.length - 1] = item;
 //        lineItems = tempArray;
     }
+    public String getFinalReceipt(String custId){
+        
+        setCustomer(db.findCustomerById(custId));
+        String data = li.getLineItemData() + "\n" +"Thank you for shopping " + this.customer.getCustName();
+                LineItem[] items = li.LineItem();
+        for (LineItem item : items) {
+            totalBeforeDiscount += item.getSubTotal();
+            totalAfterDiscount += (item.getSubTotal() - item.getDiscount());
+            totalDiscount += item.getDiscount();
+
+            sb.append(String.format("\n%-8s",item.getProduct().getProdId()));
+            sb.append(String.format("%-25s",item.getProduct().getProdName()));
+            sb.append(String.format("%8.2f",item.getProduct().getUnitCost()));
+            sb.append(String.format("%10d",item.getQty()));
+            sb.append(String.format("%15.2f",item.getExtPrice()));
+        }
+        return data;
+                
+    }
+    
     public Product getProduct() {
         return product;
     }

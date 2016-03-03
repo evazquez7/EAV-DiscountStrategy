@@ -9,11 +9,11 @@ package eav.discountstrategy;
  *
  * @author Emilio
  */
-public class ConsoleOutput implements Output{
+public class ConsoleOutput implements OutputStrategy{
 
     @Override
-    public void output(Register register) {
-        System.out.println(register);
+    public void output(String data) {
+        System.out.println(data);
     }
     
 }

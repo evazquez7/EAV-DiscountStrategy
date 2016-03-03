@@ -9,7 +9,7 @@ package eav.discountstrategy;
  *
  * @author Emilio
  */
-public interface Output {
+public interface OutputStrategy {
   
-    public abstract void output(Register register);
+    public abstract void output(String data);
 }
