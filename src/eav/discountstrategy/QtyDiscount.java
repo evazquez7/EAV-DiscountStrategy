@@ -18,7 +18,11 @@ public class QtyDiscount implements DiscountStrategy{
         return minQty;
     }
 
-    public final void setMinQty(int minQty) {
+    public final void setMinQty(int minQty) throws IllegalArgumentException{
+        if (minQty > 0){
+            throw new IllegalArgumentException(
+                    "Sorry minimum qty is necessary");
+        }
         //needs validation
         this.minQty = minQty;
     }
@@ -32,7 +36,11 @@ public class QtyDiscount implements DiscountStrategy{
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate)throws IllegalArgumentException{
+        if (discountRate >0){
+            throw new IllegalArgumentException(
+                    "Sorry discount is mandatory");
+        } 
         //needs validation
         this.discountRate = discountRate;
     }

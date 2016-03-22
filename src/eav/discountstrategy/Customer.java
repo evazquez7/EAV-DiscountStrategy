@@ -22,7 +22,11 @@ public class Customer {
         return custId;
     }
 
-    public final void setCustId(String custId) {
+    public final void setCustId(String custId)throws IllegalArgumentException{
+        if (custId == null || custId.isEmpty() || custId.length() > 5 || custId.length() < 10){
+            throw new IllegalArgumentException(
+                    "Sorry custId is mandatory and cannot be less than 5 and greater than 10");
+        } 
         //needs validation
         this.custId = custId;
     }
@@ -31,7 +35,11 @@ public class Customer {
         return custName;
     }
 
-    public final void setCustName(String custName) {
+    public final void setCustName(String custName) throws IllegalArgumentException{
+        if (custName == null || custName.isEmpty() || custName.length() > 5 || custName.length()< 10){
+            throw new IllegalArgumentException(
+                    "Sorry name is mandatory and cannot be less than 5 and greater than 10");
+        }
         //needs validation
         this.custName = custName;
     }

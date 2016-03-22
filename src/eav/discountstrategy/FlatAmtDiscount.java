@@ -20,13 +20,21 @@ public class FlatAmtDiscount implements DiscountStrategy{
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate)throws IllegalArgumentException{
+        if (discountRate > 0){
+            throw new IllegalArgumentException(
+                    "Sorry discount is mandatory and cannot be less than 0");
+        } 
         //needs validation
         this.discountRate = discountRate;
     }
     
     @Override
-    public double getDiscoutAmt(int qty, double unitCost) {
+    public double getDiscoutAmt(int qty, double unitCost) throws IllegalArgumentException{
+        if (qty >0 && unitCost > 0){
+            throw new IllegalArgumentException(
+                    "Sorry qty and unit cost cannot be less than 0");
+        } 
         //needs validation
         return discountRate;
     }

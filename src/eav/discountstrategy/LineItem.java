@@ -43,7 +43,11 @@ public class LineItem {
         return product;
     }
 
-    public final void setProduct(Product product) {
+    public final void setProduct(Product product)throws IllegalArgumentException{
+        if (product == null){
+            throw new IllegalArgumentException(
+                    "Sorry need get product");
+        } 
         //needs validation
         this.product = product;
     }
@@ -52,7 +56,11 @@ public class LineItem {
         return qty;
     }
 
-    public final void setQty(int qty) {
+    public final void setQty(int qty) throws IllegalArgumentException{
+        if (qty < 0){
+            throw new IllegalArgumentException(
+                    "Sorry qty  cannot be less than 0 ");
+        }
         //needs validation
         this.qty = qty;
     }

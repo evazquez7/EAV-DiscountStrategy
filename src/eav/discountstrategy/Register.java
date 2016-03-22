@@ -24,7 +24,11 @@ public class Register {
         receipt = new Receipt(custId, db);
     }
     
-    public final void endSale(String custId){
+    public final void endSale(String custId)throws IllegalArgumentException{
+        if (custId == null || custId.isEmpty() || custId.length() > 5 || custId.length()< 10){
+            throw new IllegalArgumentException(
+                    "Sorry customerID is mandatory and cannot be less than 5 and greater than 10");
+        }
          String data = receipt.getFinalReceipt(custId);
         for(OutputStrategy out : outputs) {
             out.output(data);
@@ -32,7 +36,12 @@ public class Register {
         
     }
     
-    public final void addItemToSale(String prodId, int qty){
+    public final void addItemToSale(String prodId, int qty)throws IllegalArgumentException{
+        if (prodId == null || prodId.isEmpty() || prodId.length() > 5 || prodId.length()< 10 && qty > 0){
+            throw new IllegalArgumentException(
+                    "Sorry productId is mandatory, cannot be less than 5 and greater than 10 and qty has to be above 0");
+        } 
+        
         receipt.addItemToReceipt(prodId, qty);
     }
 
@@ -40,7 +49,11 @@ public class Register {
         return receipt;
     }
 
-    public final void setReceipt(Receipt receipt) {
+    public final void setReceipt(Receipt receipt) throws IllegalArgumentException{
+        if (receipt == null){
+            throw new IllegalArgumentException(
+                    "Sorry receipt is necessary");
+        }
         //needs validation
         this.receipt = receipt;
     }
@@ -49,7 +62,11 @@ public class Register {
         return storeName;
     }
 
-    public final void setStoreName(String storeName) {
+    public final void setStoreName(String storeName)throws IllegalArgumentException{
+        if (storeName == null || storeName.isEmpty() || storeName.length() > 5 || storeName.length()< 30){
+            throw new IllegalArgumentException(
+                    "Sorry store name is mandatory and cannot be less than 5 and greater than 30");
+        } 
         //need validation
         this.storeName = storeName;
     }

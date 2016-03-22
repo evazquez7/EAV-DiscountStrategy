@@ -69,7 +69,11 @@ public class Receipt {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(Product product)throws IllegalArgumentException{
+        if (product == null){
+            throw new IllegalArgumentException(
+                    "Sorry product is necessary");
+        } {
         //need validation
         this.product = product;
     }
@@ -78,7 +82,7 @@ public class Receipt {
         return lineItems;
     }
 
-    public void setLineItems(LineItem[] lineItems) {
+    public void setLineItems(LineItem[] lineItems)  {
         this.lineItems = lineItems;
     }
    
@@ -88,7 +92,11 @@ public class Receipt {
         return customer;
     }
 
-    public final void setCustomer(Customer customer) {
+    public final void setCustomer(Customer customer)throws IllegalArgumentException{
+        if (customer == null){
+            throw new IllegalArgumentException(
+                    "Sorry Customer is mandatory");
+        } {
         //needs validation
         this.customer = customer;
     }

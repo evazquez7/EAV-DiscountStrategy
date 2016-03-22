@@ -21,7 +21,11 @@ public class NoDiscount implements DiscountStrategy{
         return discountRate;
     }
 
-    public final void setDiscountRate(double discountRate) {
+    public final void setDiscountRate(double discountRate) throws IllegalArgumentException{
+        if (discountRate < 0 || discountRate > 0){
+            throw new IllegalArgumentException(
+                    "Sorry discount rate is has to equal 0 ");
+        }
         //needs validation
         this.discountRate = discountRate;
     }

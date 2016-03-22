@@ -26,7 +26,11 @@ public class Product {
         return prodId;
     }
 
-    public final void setProdId(String prodId) {
+    public final void setProdId(String prodId) throws IllegalArgumentException{
+        if (prodId == null || prodId.isEmpty() || prodId.length() < 5 || prodId.length() > 10){
+            throw new IllegalArgumentException(
+                    "Sorry productId is mandatory and cannot be less than 5 and greater than 10");
+        }
         //needs validation
         this.prodId = prodId;
     }
